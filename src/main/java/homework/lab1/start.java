@@ -1,10 +1,11 @@
 package homework.lab1;
 
+import homework.lab1.EvgeniyaSuperIntegerList;
+
 public class start {
 
     public static void main(String[]args){
-        int [] array = {1, 3, 5, 6};
-        EvgeniyaSuperIntegerList list = new EvgeniyaSuperIntegerList(array);
+        EvgeniyaSuperIntegerList list = new EvgeniyaSuperIntegerList();
         list.add(6);
         list.add(4);
         list.add(3);
