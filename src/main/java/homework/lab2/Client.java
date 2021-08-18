@@ -1,7 +1,7 @@
 package homework.lab2;
 
 public class Client {
-    private final int debt; //todo you can't remove final
+    private final int debt;
     private final int bonus;
     private final String name;
     private final int salary;
@@ -12,11 +12,17 @@ public class Client {
         name = builder.name;
         salary = builder.salary;
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
-        private int debt; //todo you can't remove final
-        private int bonus;
+        private Integer debt;
+        private Integer bonus;
         private String name;
-        private int salary;
+        private Integer salary;
+        private boolean WasUsed;
 
         public Builder debt(int debt) {
             this.debt = debt;
@@ -39,6 +45,10 @@ public class Client {
         }
 
         public Client build() {
+            if (WasUsed) {
+                throw new IllegalStateException("builder was already used");
+            }
+            WasUsed = true;
             return new Client(this);
         }
     }
