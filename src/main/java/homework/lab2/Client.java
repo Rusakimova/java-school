@@ -6,7 +6,7 @@ public class Client {
     private final String name;
     private final int salary;
 
-    public Client(Builder builder) {
+    private Client(Builder builder) {
         debt = builder.debt;
         bonus = builder.bonus;
         name = builder.name;
