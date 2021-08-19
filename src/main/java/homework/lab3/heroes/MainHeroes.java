@@ -1,6 +1,5 @@
 package homework.lab3.heroes;
 
-import homework.lab3.infra.HeroFactory;
 import homework.lab3.infra.ReflectionHeroFactory;
 
 public class MainHeroes {

@@ -1,7 +1,5 @@
 package homework.lab3.heroes;
 
-import homework.lab3.heroes.Hero;
-
 public class GameManager {
     void fight(Hero c1, Hero c2) {
         System.out.println("There is a battle between "+ c1.toString() + " and " + c2.toString());
