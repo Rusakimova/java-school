@@ -21,4 +21,27 @@ public enum HttpCode {
         this.errorType = errorType;
         //this.code = code;
     }
+    public static void findByCode(int code) {
+        if (code >= 100) {
+            if (code < 200) {
+                System.out.println(INFORMATIONAL.toString());
+            } else {
+                if (code < 300) {
+                    System.out.println(SUCCESS.toString());
+                } else {
+                    if (code < 400) {
+                        System.out.println(REDIRECTION.toString());
+                    } else {
+                        if (code < 500) {
+                            System.out.println(CLIENT.toString());
+                        } else {
+                            System.out.println(SERVERERROR.toString());
+                        }
+                    }
+                }
+            }
+        } else {
+            throw new IllegalStateException(code +" not supported");
+        }
+    }
 }
