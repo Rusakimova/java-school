@@ -1,5 +1,4 @@
 package homework.lab1;
-
 import homework.lab1.EvgeniyaSuperIntegerList;
 
 public class start {
