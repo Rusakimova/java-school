@@ -4,23 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ColorFrame extends JFrame {
-    class Counter {
-        private int value;
-        public int Increment() {
-            value++;
-            return value;
-        }
-        Counter (int counter) {
-            this.value = counter;
-        }
-    }
 
-    public ColorFrame(int counter) throws HeadlessException {
+    public ColorFrame(AtomicInteger counter) throws HeadlessException {
         setSize(500,500);
         JButton button = new JButton("click me to be red");
-        Counter counterModified = new Counter(counter);
 
        /* List.of("","sd").sort(new Comparator<String>() {
             @Override
@@ -33,8 +23,7 @@ public class ColorFrame extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                System.out.println("now the counter is " + counterModified.Increment());
+                System.out.println("now the counter is " + counter.addAndGet(1));
             }
         });
 
@@ -44,6 +33,7 @@ public class ColorFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        new ColorFrame(10);
+        AtomicInteger counter = new AtomicInteger(10);
+        new ColorFrame(counter);
     }
 }
