@@ -1,16 +1,17 @@
 package homework.lab5;
 
 import java.text.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
-    private String pattern = "dd%MMM%yyy,hh:mm";
-    SimpleDateFormat formatForDate = new SimpleDateFormat(pattern);
+    private static final String pattern = "dd%MM%yyyy,HH:mm";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 
-    Date convertStringToDate(String date) throws ParseException {
-        return formatForDate.parse(date);
+    public static LocalDateTime convertStringToDate(String date) {
+        return LocalDateTime.from(formatter.parse(date));
     }
-    String convertDateToString(Date date) {
-        return (formatForDate.format(date));
+    public static String convertDateToString(LocalDateTime date) {
+        return date.format(formatter);
     }
 }

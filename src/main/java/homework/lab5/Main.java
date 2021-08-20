@@ -1,16 +1,15 @@
 package homework.lab5;
 
-import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
-        Date date = new Date();
+    public static void main(String[] args) {
+        LocalDateTime date = LocalDateTime.now();
         DateUtils dateUtils = new DateUtils();
         String dateString = dateUtils.convertDateToString(date);
-        Date dateDate = dateUtils.convertStringToDate("21%авг.%2021,14:30");
-        System.out.println(dateString);
+        LocalDateTime dateDate = dateUtils.convertStringToDate("20%01%2021,09:43");
         System.out.println(dateDate);
+        System.out.println(dateString);
     }
 
 }
