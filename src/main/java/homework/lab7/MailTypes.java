@@ -1,5 +1,8 @@
 package homework.lab7;
 
+import homework.lab7.Letters.BirthdayLetter;
+import homework.lab7.Letters.Letter;
+import homework.lab7.Letters.WelcomeLetter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
