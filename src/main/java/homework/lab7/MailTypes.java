@@ -1,8 +1,8 @@
 package homework.lab7;
 
-import homework.lab7.Letters.BirthdayLetter;
-import homework.lab7.Letters.Letter;
-import homework.lab7.Letters.WelcomeLetter;
+import homework.lab7.letters.BirthdayLetter;
+import homework.lab7.letters.Letter;
+import homework.lab7.letters.WelcomeLetter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -17,7 +17,7 @@ public enum MailTypes {
         MailTypes[] types = MailTypes.values();
         for (MailTypes mailType : types) {
             if (type == mailType.type) {
-                mailType.letter.content();
+                mailType.letter.sendContent();
                 return mailType;
             }
         }
