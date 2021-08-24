@@ -22,4 +22,8 @@ public class EmployeeUtils {
          return employees.stream()
                 .collect(Collectors.toMap(Employee::getName, Function.identity(), (e1, e2)->(e1.getSalary()>e2.getSalary()? e1:e2)));
     }
+    public static Map<Seniority, Long> groupBySeniority(List<Employee> employees) {
+        return employees.stream()
+                .collect(Collectors.groupingBy(e -> Seniority.getBySalary(e.getSalary()), Collectors.counting()));
+    }
 }
