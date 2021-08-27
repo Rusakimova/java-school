@@ -3,6 +3,8 @@ package classwork.my_spring;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.lang.reflect.Modifier;
@@ -16,6 +18,7 @@ public class ObjectFactory {
     private Config config = new JavaConfig();
     private Reflections scanner = new Reflections("classwork.my_spring");
     private List<ObjectConfigurator> configurators = new ArrayList<>();
+    private List<ProxyConfigurator> proxyConfigurators = new ArrayList<>();
     
     @SneakyThrows
     private ObjectFactory() {
@@ -25,13 +28,31 @@ public class ObjectFactory {
                 configurators.add(aClass.getDeclaredConstructor().newInstance());
             }
         }
+        Set <Class<? extends ProxyConfigurator>> proxyClasses = scanner.getSubTypesOf(ProxyConfigurator.class);
+        for (Class<? extends ProxyConfigurator> aClass:proxyClasses){
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                proxyConfigurators.add(aClass.getDeclaredConstructor().newInstance());
+            }
+        }
+
     }
+
+
+
     @SneakyThrows
     public <T> T createObject(Class<T> type) {
         type = resolveImple(type);
         T t = type.getDeclaredConstructor().newInstance();
         configure(t);
         initialize(t);
+        t = wrapWithProxyIfNeeded(type, t);
+        return t;
+    }
+    @SneakyThrows
+    private <T> T wrapWithProxyIfNeeded(Class<T> type, T t) {
+        for (ProxyConfigurator conf: proxyConfigurators){
+            t = (T) conf.configure(t, type);
+        }
         return t;
     }
 

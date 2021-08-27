@@ -5,16 +5,26 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>java-school</artifactId>
+    <artifactId>java-school-db-2021</artifactId>
     <version>1.0-SNAPSHOT</version>
+
 
 
 
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.sonatype.sisu.inject</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.1.1</version>
+        </dependency>
 
-
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
@@ -45,9 +55,14 @@
             <version>3.9.0</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
-<build>
+
+
+
+    <build>
+
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
